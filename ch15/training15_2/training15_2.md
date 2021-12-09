@@ -61,3 +61,48 @@ Uncaught TypeError: Assignment to constant variable.
 ```
 
 なので基本的に`var`→`let`→`const`の順で変数の安全性が上がる。
+
+## ホイスティング
+
+`var`だと後から宣言してもエラーがでない。これを変数の巻き上げという。
+
+```jsx
+a = 100;
+console.log(100);
+
+var a; // エラーがでない
+let a; // SyntaxError: Identifier 'a' has already been declared
+```
+
+## スコープ
+
+`var`ではブロックスコープが適用されず、ブロック内で宣言した変数をブロック外で参照できてしまう。
+
+```jsx
+var a = 100;
+
+if (true) {
+  var a = 50;
+  var b = 100;
+  console.log(a); // 50
+}
+
+console.log(a); // 50 *最初に宣言した100ではない
+console.log(b); // 100
+```
+
+`let`と`const`はブロックスコープが適用される。
+
+```jsx
+var a = 100;
+
+if (true) {
+  const a = 50;
+  let b = 100;
+  console.log(a); // 50
+  console.log(b); //100
+}
+
+console.log(a); // 100
+console.log(b); // ReferenceError: b is not defined
+```

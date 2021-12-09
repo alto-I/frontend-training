@@ -1,9 +1,13 @@
 // 課題: var と let const とのそれぞれの違いを調べて説明してください。
 
-// varは再宣言、再代入が可能
-var foo = 'hoge';
+var a = 100;
 
-foo = 'huga';
+if (true) {
+  const a = 50;
+  let b = 100;
+  console.log(a);
+  console.log(b);
+}
 
-var foo = 'hogehoge'
-
+console.log(a);
+console.log(b);
